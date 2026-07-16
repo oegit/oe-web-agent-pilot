@@ -546,12 +546,16 @@
        this is projects/<project>/variants.json inlined here at build time.
        ?variant=medicina in the URL preselects.
 
-       DEMO LIMITATION: this payload is Spanish-only, so the /pt/ page localizes the
-       sentence and the option labels (they come from strings/{lang}.json) but still
-       renders Spanish feature text once a variant applies. A real build keys the
-       variant content by locale. The keys (logistica/medicina/construccion) are
-       language-neutral identifiers — they are NOT display copy; the labels the user
-       reads come from the s3.variant.<key> strings in the markup above. -->
+       The payload is localized like any other copy: the feature strings are
+       {{s3.var.*}} keys resolved per locale from strings/{lang}.json at build time,
+       so /pt/ swaps in Portuguese features. The variant keys themselves
+       (logistica/medicina/construccion) are language-neutral identifiers — they are
+       NOT display copy; the labels the user reads come from the s3.variant.<key>
+       strings in the markup above, and ?variant= matches these identifiers.
+
+       ⚠ Attribute quoting here is single-quoted ON PURPOSE: these values are JSON
+       inside HTML, so a double quote in a resolved string would terminate the JSON
+       string and break the block. Keep class='...' in the s3.var.* strings. -->
   <script type="application/json" id="s3-variants">
   {
     "logistica": { "feats": [

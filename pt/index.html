@@ -546,37 +546,41 @@
        this is projects/<project>/variants.json inlined here at build time.
        ?variant=medicina in the URL preselects.
 
-       DEMO LIMITATION: this payload is Spanish-only, so the /pt/ page localizes the
-       sentence and the option labels (they come from strings/{lang}.json) but still
-       renders Spanish feature text once a variant applies. A real build keys the
-       variant content by locale. The keys (logistica/medicina/construccion) are
-       language-neutral identifiers — they are NOT display copy; the labels the user
-       reads come from the s3.variant.<key> strings in the markup above. -->
+       The payload is localized like any other copy: the feature strings are
+       {{s3.var.*}} keys resolved per locale from strings/{lang}.json at build time,
+       so /pt/ swaps in Portuguese features. The variant keys themselves
+       (logistica/medicina/construccion) are language-neutral identifiers — they are
+       NOT display copy; the labels the user reads come from the s3.variant.<key>
+       strings in the markup above, and ?variant= matches these identifiers.
+
+       ⚠ Attribute quoting here is single-quoted ON PURPOSE: these values are JSON
+       inside HTML, so a double quote in a resolved string would terminate the JSON
+       string and break the block. Keep class='...' in the s3.var.* strings. -->
   <script type="application/json" id="s3-variants">
   {
     "logistica": { "feats": [
-      "<span class='u-accent-2'>Coordina envíos</span> en inglés con proveedores globales",
-      "<span class='u-accent-2'>Domina el vocabulario</span> de aduanas, fletes e inventarios",
-      "<span class='u-accent-2'>Negocia con confianza</span> tarifas y tiempos de entrega",
-      "<span class='u-accent-2'>Redacta órdenes</span> de compra y correos claros y profesionales",
-      "<span class='u-accent-2'>Entiende los Incoterms</span> y la documentación de comercio exterior",
-      "<span class='u-accent-2'>Lidera reuniones</span> con equipos de supply chain internacionales"
+      "<span class='u-accent-2'>Coordene envios</span> em inglês com fornecedores globais",
+      "<span class='u-accent-2'>Domine o vocabulário</span> de alfândega, fretes e estoque",
+      "<span class='u-accent-2'>Negocie com confiança</span> tarifas e prazos de entrega",
+      "<span class='u-accent-2'>Escreva pedidos</span> de compra e e-mails claros e profissionais",
+      "<span class='u-accent-2'>Entenda os Incoterms</span> e a documentação de comércio exterior",
+      "<span class='u-accent-2'>Lidere reuniões</span> com equipes de supply chain internacionais"
     ] },
     "medicina": { "feats": [
-      "<span class='u-accent-2'>Atiende pacientes</span> en inglés con claridad y empatía",
-      "<span class='u-accent-2'>Domina la terminología</span> clínica y farmacológica",
-      "<span class='u-accent-2'>Presenta casos</span> en congresos y publicaciones médicas",
-      "<span class='u-accent-2'>Lee investigación</span> de vanguardia sin barreras de idioma",
-      "<span class='u-accent-2'>Prepárate</span> para exámenes como el OET o el USMLE",
-      "<span class='u-accent-2'>Colabora</span> con equipos médicos internacionales"
+      "<span class='u-accent-2'>Atenda pacientes</span> em inglês com clareza e empatia",
+      "<span class='u-accent-2'>Domine a terminologia</span> clínica e farmacológica",
+      "<span class='u-accent-2'>Apresente casos</span> em congressos e publicações médicas",
+      "<span class='u-accent-2'>Leia pesquisas</span> de ponta sem barreira de idioma",
+      "<span class='u-accent-2'>Prepare-se</span> para provas como o OET ou o USMLE",
+      "<span class='u-accent-2'>Colabore</span> com equipes médicas internacionais"
     ] },
     "construccion": { "feats": [
-      "<span class='u-accent-2'>Coordina obras</span> en inglés con contratistas y clientes",
-      "<span class='u-accent-2'>Domina el vocabulario</span> técnico de planos y materiales",
-      "<span class='u-accent-2'>Gestiona la seguridad</span> con protocolos y normas en inglés",
-      "<span class='u-accent-2'>Negocia presupuestos</span> y cronogramas con proveedores",
-      "<span class='u-accent-2'>Interpreta especificaciones</span> y documentación de ingeniería",
-      "<span class='u-accent-2'>Lidera equipos</span> en proyectos de construcción internacionales"
+      "<span class='u-accent-2'>Coordene obras</span> em inglês com empreiteiros e clientes",
+      "<span class='u-accent-2'>Domine o vocabulário</span> técnico de plantas e materiais",
+      "<span class='u-accent-2'>Gerencie a segurança</span> com protocolos e normas em inglês",
+      "<span class='u-accent-2'>Negocie orçamentos</span> e cronogramas com fornecedores",
+      "<span class='u-accent-2'>Interprete especificações</span> e documentação de engenharia",
+      "<span class='u-accent-2'>Lidere equipes</span> em projetos de construção internacionais"
     ] }
   }
   </script>

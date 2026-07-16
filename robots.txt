@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://oegit.github.io/oe-web-agent-pilot/sitemap.xml
